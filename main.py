@@ -1,14 +1,13 @@
 import matplotlib.pyplot as plt
-import numpy as np
 
-from mpl_toolkits.mplot3d import axes3d
+# Pie chart, where the slices will be ordered and plotted counter-clockwise:
+labels = 'Frogs', 'Hogs', 'Dogs', 'Logs'
+sizes = [12, 30, 40, 10]
+explode = (0, 0.1, 0, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
 
-ax = axes3d.Axes3D(plt.figure())
-
-i = np.arange(-10, 10, 0.1)
-X, Y = np.meshgrid(i, i)
-Z = X * np.tan(X + Y) + Y * 2
-
-ax.plot_wireframe(X, Y, Z, rstride=10, cstride=10)
+fig1, ax1 = plt.subplots()
+ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+        shadow=True, startangle=90)
+ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
 plt.show()
